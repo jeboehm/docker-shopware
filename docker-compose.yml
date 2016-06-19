@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  percona:
+    image: percona:5.7
+    restart: on-failure:5
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=shopware
+    tmpfs:
+      - /var/log
+    volumes:
+      - data-db:/var/lib/mysql
+
+  shopware:
+    build: .
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=shopware
+    links:
+      - percona:db
+    ports:
+      - "127.0.0.1:8080:80"
+    tmpfs:
+      - /var/www/html/var/log
+    volumes:
+      - ./shopware:/var/www/html
+
+volumes:
+  data-db:
+    driver: local
