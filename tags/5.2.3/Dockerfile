@@ -1,7 +1,7 @@
 FROM jeboehm/shopware:latest-onbuild
 MAINTAINER Jeffrey Boehm <jeffrey.boehm@twt.de>
 
-ENV SHOPWARE_VERSION=5.1.6 \
+ENV SHOPWARE_VERSION=5.2.3 \
     COMPOSER_VERSION=1.1.2
 
 RUN wget -qO /root/shopware.tar.gz https://github.com/shopware/shopware/archive/v$SHOPWARE_VERSION.tar.gz && \

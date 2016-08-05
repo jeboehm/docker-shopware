@@ -20,20 +20,14 @@ RUN apt-get update && \
         zip && \
     rm -rf /var/lib/apt/lists/* && \
     a2enmod rewrite
-    
+
 ENV \
-    SHOPWARE_VERSION=5.1.6 \
-    COMPOSER_VERSION=1.1.2 \
     MYSQL_HOST=db \
     MYSQL_USER=root \
     MYSQL_PASSWORD=root \
     MYSQL_DATABASE=shopware
 
-ONBUILD RUN wget -qO /root/shopware.tar.gz https://github.com/shopware/shopware/archive/v$SHOPWARE_VERSION.tar.gz && \
-    wget -qO /usr/local/bin/composer https://getcomposer.org/download/$COMPOSER_VERSION/composer.phar && \
-    chmod 755 /usr/local/bin/composer
-
 COPY rootfs/ /
-VOLUME /var/www/html
+ONBUILD VOLUME /var/www/html
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

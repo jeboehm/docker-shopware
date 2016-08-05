@@ -20,18 +20,19 @@ fi
 if [ -z $@ ]
 then
 	echo "Starting Webserver.."
-	chmod 777 var/cache/ var/log/
+	chmod -R 777 var/cache/ var/log/
 	apache2-foreground
 else
+	# TODO extend me!
 	case "$@" in
 		cc)
-    		var/cache/clear_cache.sh
-	    	;;
+			var/cache/clear_cache.sh
+			;;
 		sh)
 			bash
-		    ;;
-		*)
-			echo "Commands: cc, grunt, sh"
 			;;
-esac
+		*)
+			echo "Commands: cc, sh"
+			;;
+	esac
 fi
