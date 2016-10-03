@@ -13,7 +13,7 @@ services:
       - data-db:/var/lib/mysql
 
   shopware:
-    image: jeboehm/shopware:5.1.6
+    image: jeboehm/shopware:5.2.7
     environment:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=root
@@ -22,8 +22,6 @@ services:
       - percona:db
     ports:
       - "127.0.0.1:8080:80"
-    tmpfs:
-      - /var/www/html/var/log
     volumes:
       - ./shopware:/var/www/html
 
