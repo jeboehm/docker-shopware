@@ -27,6 +27,8 @@ ENV \
     MYSQL_PASSWORD=root \
     MYSQL_DATABASE=shopware
 
+RUN wget -O /root/test_images.zip http://releases.s3.shopware.com/test_images.zip
+
 COPY rootfs/ /
 ONBUILD VOLUME /var/www/html
 

@@ -15,6 +15,8 @@ then
 		-Ddb.name=${MYSQL_DATABASE} \
 		-Ddb.host=${MYSQL_HOST} \
 		build-unit
+
+	unzip /root/test_images.zip
 fi
 
 if [ -z $@ ]
