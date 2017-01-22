@@ -7,7 +7,7 @@ then
 	echo "Installing Shopware..."
 
 	tar --strip 1 -zxf /root/shopware.tar.gz
-	ln -s /usr/local/bin/composer composer.phar
+	ln -sf /usr/local/bin/composer composer.phar
 
 	ant -f build/build.xml \
 		-Ddb.user=${MYSQL_USER} \
@@ -16,14 +16,14 @@ then
 		-Ddb.host=${MYSQL_HOST} \
 		build-unit
 
-	unzip /root/test_images.zip
+	unzip -n /root/test_images.zip
 fi
 
 if [ -z $@ ]
 then
 	echo "Starting Webserver.."
 	chmod -R 777 var/cache/ var/log/
-	apache2-foreground
+	/usr/bin/supervisord -c /etc/supervisord.conf
 else
 	# TODO extend me!
 	case "$@" in
@@ -31,7 +31,7 @@ else
 			var/cache/clear_cache.sh
 			;;
 		sh)
-			bash
+			sh
 			;;
 		*)
 			echo "Commands: cc, sh"

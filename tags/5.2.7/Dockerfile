@@ -1,4 +1,4 @@
-FROM jeboehm/shopware:latest-onbuild
+FROM jeboehm/shopware:base
 MAINTAINER Jeffrey Boehm <jeffrey.boehm@twt.de>
 
 ENV SHOPWARE_VERSION=5.2.7 \
