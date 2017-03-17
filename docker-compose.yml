@@ -13,7 +13,7 @@ services:
       - data-db:/var/lib/mysql
 
   shopware:
-    image: jeboehm/shopware:5.2.14
+    image: jeboehm/shopware:5.2.20
     environment:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=root
