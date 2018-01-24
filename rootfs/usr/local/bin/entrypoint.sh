@@ -28,7 +28,13 @@ else
 	# TODO extend me!
 	case "$@" in
 		cc)
-			var/cache/clear_cache.sh
+			/var/www/html/var/cache/clear_cache.sh
+			;;
+		cron)
+		  /var/www/html/bin/console sw:cron:run
+			;;
+		mediamigrate)
+		  /var/www/html/bin/console sw:media:migrate
 			;;
 		sh)
 			sh
