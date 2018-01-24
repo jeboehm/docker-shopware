@@ -6,8 +6,8 @@ if ! [ -r /var/www/html/config.php ]
 then
 	echo "Installing Shopware..."
 
-	tar --strip 1 -zxf /root/shopware.tar.gz
-	ln -sf /usr/local/bin/composer composer.phar
+	tar --strip 1 -zxf ${PATH_SW}
+	ln -sf /usr/bin/composer composer.phar
 
 	ant -f build/build.xml \
 		-Ddb.user=${MYSQL_USER} \
@@ -16,13 +16,13 @@ then
 		-Ddb.host=${MYSQL_HOST} \
 		build-unit
 
-	unzip -n /root/test_images.zip
+	unzip -n ${PATH_IMAGES}
 fi
 
 if [ -z $@ ]
 then
 	echo "Starting Webserver.."
-	chmod -R 777 var/cache/ var/log/
+	chown -R www-data:root var/cache/ var/log/ media/ files/ web/cache/
 	/usr/bin/supervisord -c /etc/supervisord.conf
 else
 	# TODO extend me!
