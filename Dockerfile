@@ -9,7 +9,8 @@ ENV \
     MYSQL_PASSWORD=root \
     MYSQL_DATABASE=shopware \
     PATH_IMAGES=/usr/src/test_images.zip \
-    PATH_SW=/usr/src/shopware.tar.gz
+    PATH_SW=/usr/src/shopware.tar.gz \
+    PATH_CONSOLE=/var/www/html/bin/console
 
 RUN apk --no-cache add \
       mariadb-client \
