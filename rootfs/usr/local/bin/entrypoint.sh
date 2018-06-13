@@ -37,6 +37,9 @@ else
         mediamigrate)
             ${PATH_CONSOLE} sw:media:migrate
         ;;
+        test)
+            composer run test
+        ;;
         sh)
             sh
         ;;
