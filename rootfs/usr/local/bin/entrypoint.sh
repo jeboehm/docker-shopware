@@ -57,7 +57,7 @@ else
             sh
         ;;
         *)
-            echo "Commands: cc, mediamigrate, sh"
+            echo "Commands: cc, cron, mediamigrate, test, sh"
         ;;
     esac
 fi

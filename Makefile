@@ -1,6 +1,6 @@
 IMAGENAME = jeboehm/shopware
 VERSIONS  = tags/*
-LATEST   := $(shell find tags -type d -mindepth 1 | sort --version-sort | tail -n 1)
+LATEST   := $(shell find tags -mindepth 1 -type d | sort --version-sort | tail -n 1)
 
 .PHONY: latest
 latest:

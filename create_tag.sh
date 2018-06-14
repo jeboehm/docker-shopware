@@ -1,7 +1,7 @@
 #!/bin/sh
 
 get_latest() {
-    echo $(basename `find tags -type d -mindepth 1 | sort --version-sort | tail -n 1`)
+    echo $(basename `find tags -mindepth 1 -type d | sort --version-sort | tail -n 1`)
 }
 
 TARGET_VERSION=${1}

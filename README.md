@@ -1,4 +1,5 @@
 # docker-shopware
+[![Build Status](https://travis-ci.org/jeboehm/docker-shopware.svg?branch=master)](https://travis-ci.org/jeboehm/docker-shopware)
 
 Run Shopware in a Docker container.
 
