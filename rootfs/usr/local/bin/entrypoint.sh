@@ -2,13 +2,12 @@
 
 wait-mysql.sh
 
-if ! [ -r /var/www/html/config.php ]
-then
-    echo "Installing Shopware..."
-
+install() {
+    echo "(1/4) Extracting Shopware..."
     tar --strip 1 -zxf ${PATH_SW}
     ln -sf /usr/bin/composer composer.phar
 
+    echo "(2/4) Installing database and dependencies..."
     ant -f build/build.xml \
         -Ddb.user=${MYSQL_USER} \
         -Ddb.password=${MYSQL_PASSWORD} \
@@ -16,14 +15,28 @@ then
         -Ddb.host=${MYSQL_HOST} \
         build-unit
 
-    unzip -n ${PATH_IMAGES}
+    echo "(3/4) Extracting the dummy images. This takes some time..."
+    unzip -qqn ${PATH_IMAGES}
+
+    echo "(4/4) Migrating the dummy images to their new paths..."
     ${PATH_CONSOLE} sw:media:migrate
+
+    echo "Installation completed!"
+}
+
+permissions() {
+    chown -R www-data:root var/cache/ var/log/ media/ files/ web/cache/
+}
+
+if ! [ -r /var/www/html/config.php ]
+then
+    install
 fi
 
 if [ -z $@ ]
 then
-    echo "Starting Webserver.."
-    chown -R www-data:root var/cache/ var/log/ media/ files/ web/cache/
+    echo "Starting Webserver...."
+    permissions
     /usr/bin/supervisord -c /etc/supervisord.conf
 else
     # TODO extend me!
