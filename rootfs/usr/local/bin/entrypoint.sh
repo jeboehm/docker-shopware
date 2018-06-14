@@ -19,7 +19,7 @@ install() {
     unzip -qqn ${PATH_IMAGES}
 
     echo "(4/4) Migrating the dummy images to their new paths..."
-    ${PATH_CONSOLE} sw:media:migrate
+    ${PATH_CONSOLE} -q sw:media:migrate
 
     echo "Installation completed!"
 }
