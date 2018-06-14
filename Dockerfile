@@ -13,9 +13,9 @@ ENV \
     PATH_CONSOLE=/var/www/html/bin/console
 
 RUN apk --no-cache add \
-      mariadb-client \
-      apache-ant && \
-    wget -O ${PATH_IMAGES} http://releases.s3.shopware.com/test_images.zip
+      apache-ant \
+      mariadb-client && \
+    wget -qO ${PATH_IMAGES} http://releases.s3.shopware.com/test_images.zip
 
 COPY rootfs/ /
 ONBUILD VOLUME /var/www/html
