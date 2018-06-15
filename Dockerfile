@@ -13,12 +13,11 @@ ENV \
     PATH_CONSOLE=/var/www/html/bin/console
 
 RUN apk --no-cache add \
-      apache-ant \
-      mariadb-client && \
+      apache-ant && \
     wget -qO ${PATH_IMAGES} http://releases.s3.shopware.com/test_images.zip
 
 COPY rootfs/ /
-ONBUILD VOLUME /var/www/html
+VOLUME /var/www/html
 
 CMD [""]
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
