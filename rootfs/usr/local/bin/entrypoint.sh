@@ -25,12 +25,15 @@ install() {
 }
 
 permissions() {
-    chown -R www-data:root var/cache/ var/log/ media/ files/ web/cache/
+    WEB_USER="www-data"
+    FOLDERS="var/cache/ var/log/ media/ files/ web/cache/"
+    find ${FOLDERS} -not -user ${WEB_USER} -exec chown ${WEB_USER} {} +
 }
 
 if ! [ -r /var/www/html/config.php ]
 then
     install
+    permissions
 fi
 
 if [ -z $@ ]
